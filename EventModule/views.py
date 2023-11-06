@@ -1,14 +1,14 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from . import models
 
 # Create your views here.
 
 
-class EventsListView(ListView):
+class Detailview(DetailView):
     model = models.Events
-    template_name = 'index.html'
-    context_object_name = 'events'
+    template_name = 'meeting-details.html'
+    context_object_name = 'detail'
 
 
 def home(request):

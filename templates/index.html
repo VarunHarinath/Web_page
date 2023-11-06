@@ -185,13 +185,13 @@
                 <div class="thumb">
                   <div class="price">
                   </div>
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/e3.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <a href="{% url 'detail' event.id %}"><img src="{% static 'assets/images/e3.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
                     <h6> {{event.eventDate|date:'m'}} <span>10</span></h6>
                   </div>
-                  <a href="meeting-details.html"><h4>{{event.eventTitle }}</h4></a>
+                  <a href="{% url 'detail' event.id %}"><h4>{{event.eventTitle }}</h4></a>
                   <p> {{event.eventAddress}} <br> {{event.eventDescription|truncatechars:30}} </p>
                 </div>
               </div>
@@ -295,7 +295,6 @@
     </div>
   </section>
 
-  {% for project in projects %}
   <section class="our-courses" id="courses">
     <div class="container">
       <div class="row">
@@ -304,6 +303,7 @@
             <h2>Our real time projects and research</h2>
           </div>
         </div>
+        {% for project in projects %}
         <div class="col-lg-12">
           <div class="owl-courses-item owl-carousel">
             <div class="item">
@@ -313,9 +313,29 @@
                 <div class="info">
                   <div class="row">
                     <div class="col-8">
+                      {% if project.projectRating == 1 %}
                       <ul>
                         <li><i class="fa fa-star"></i></li>
                       </ul>
+                      {% elif project.projectRating == 2 %}
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      {% elif project.projectRating == 3 %}
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      {% elif project.projectRating == 4 %}
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      {% endif %}
                     </div>
                     <div class="col-4">
                        <span>{{project.projectMemebers}}</span>
@@ -325,11 +345,11 @@
               </div>
             </div>
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>
   </section>
-  {% endfor %}
 
   <section class="our-facts">
     <div class="container">
