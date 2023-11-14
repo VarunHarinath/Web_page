@@ -14,5 +14,7 @@ class Detailview(DetailView):
 def home(request):
     events = models.Events.objects.all()
     projects = models.ProjectPost.objects.all()
-    context = {'events': events, 'projects': projects}
+    MONTH = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SPT','OCT','NOV','DEC']
+    date = models.Events.eventDate.date()
+    context = {'events': events, 'projects': projects,'date':date}
     return render(request, 'index.html', context)

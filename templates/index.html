@@ -189,7 +189,7 @@
                 </div>
                 <div class="down-content">
                   <div class="date">
-                    <h6> {{event.eventDate|date:'m'}} <span>10</span></h6>
+                    <h6> {{event.eventDate|date:'m'}} /// {{date}} <span>10</span></h6>
                   </div>
                   <a href="{% url 'detail' event.id %}"><h4>{{event.eventTitle }}</h4></a>
                   <p> {{event.eventAddress}} <br> {{event.eventDescription|truncatechars:30}} </p>
