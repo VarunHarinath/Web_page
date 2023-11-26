@@ -64,6 +64,7 @@
                       <ul class="nav">
                           <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                           <li class="scroll-to-section"><a href="#meetings">Events</a></li>
+                          <li><a href="{% url 'seasons' %}">Seasons</a></li>
                           <li class="scroll-to-section"><a href="#apply">About Us</a></li>
                           <li class="scroll-to-section"><a href="#courses">Projects</a></li> 
                           <li class="scroll-to-section"><a href="#team">Our Team</a></li>
@@ -93,7 +94,7 @@
                 <div class="caption">
               <h6>Hello Techies</h6>
               <h2>Welcome to Nexus Hub</h2>
-              <p>Welcome to Nexus Hub <a rel="nofollow" href="index.html" target="_blank">Webpage</a>, a thriving community of Tech enthusiasts, where knowledge meets innovation and collaboration leads to endless  <a rel="nofollow" href="index.html" target="_blank">possibilities</a>.</p>
+              <p>Welcome to Nexus Hub <a href="{% url 'home' %}">Webpage</a>, a thriving community of Tech enthusiasts, where knowledge meets innovation and collaboration leads to endless  <a href="{% url 'home' %}">possibilities</a>.</p>
               <div class="main-button-red">
                   <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
               </div>
@@ -177,28 +178,32 @@
           </div>
         </div>
         
-        {% for event in events %}
         <div class="col-lg-12">
           <div class="row">
+            {% for event in events %}
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
                   <div class="price">
                   </div>
-                  <a href="{% url 'detail' event.id %}"><img src="{% static 'assets/images/e3.jpg' %}" alt="New Lecturer Meeting"></a>
+                  {% if event.eventImage %}
+                  <img src="/media/{{event.eventImage}}" alt="New Lecturer Meeting">
+                  {% else %}
+                  <img src="{% static 'assets/images/e3.jpg' %}" alt="New Lecturer Meeting">
+                  {% endif %}
                 </div>
                 <div class="down-content">
                   <div class="date">
                     <h6> {{event.eventDate|date:'m'}} <span>10</span></h6>
                   </div>
-                  <a href="{% url 'detail' event.id %}"><h4>{{event.eventTitle }}</h4></a>
+                  <h4>{{event.eventTitle }}</h4>
                   <p> {{event.eventAddress}} <br> {{event.eventDescription|truncatechars:30}} </p>
                 </div>
               </div>
             </div>
+            {% endfor %}
           </div>
         </div>
-        {% endfor %}
         
       </div>
     </div>
@@ -241,7 +246,7 @@
                 </div>
                 <div class="accordion-body">
                     <div class="content">
-                      <p><a rel="nofollow" href="index.html" target="_blank">Nexus Hub</a> is a thriving community dedicated to artificial intelligence and Technology enthusiasts. 
+                      <p><a rel="nofollow" href="{% url 'home' %}" target="_blank">Nexus Hub</a> is a thriving community dedicated to artificial intelligence and Technology enthusiasts. 
                         It provides a platform for individuals to learn, collaborate, and explore the world of Technology together.</p>
                     </div>
                 </div>
@@ -303,12 +308,12 @@
             <h2>Our real time projects and research</h2>
           </div>
         </div>
-        {% for project in projects %}
         <div class="col-lg-12">
           <div class="owl-courses-item owl-carousel">
             <div class="item">
               <img src="{% static 'assets/images/course-01.jpg' %}" alt="Course One">
               <div class="down-content">
+                {% for project in projects %} 
                 <h4>{{project.projectDetails}}</h4>
                 <div class="info">
                   <div class="row">
@@ -341,11 +346,11 @@
                        <span>{{project.projectMemebers}}</span>
                     </div>
                   </div>
+                  {% endfor %}
                 </div>
               </div>
             </div>
           </div>
-          {% endfor %}
         </div>
       </div>
     </div>
@@ -415,70 +420,70 @@
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/1.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/1.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/2.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/2.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/3.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/3.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/4.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/4.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/5.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/5.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/6.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/6.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/7.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/7.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/8.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/8.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/10.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/10.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="meeting-item">
                 <div class="thumb">
-                  <a href="meeting-details.html"><img src="{% static 'assets/images/9.jpg' %}" alt="New Lecturer Meeting"></a>
+                  <img src="{% static 'assets/images/9.jpg' %}" alt="New Lecturer Meeting"></a>
                 </div>
               </div>
             </div>
@@ -494,27 +499,31 @@
         <div class="col-lg-9 align-self-center">
           <div class="row">
             <div class="col-lg-12">
-              <form id="contact" action="contact.php" method="post">
+              <form id="contact" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="071736e9-83aa-411e-a151-6bf20c172111">
+                <input type="hidden" name="from_name" value="Nexus Hub">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>Let's get in touch</h2>
                   </div>
                   <div class="col-lg-6">
                     <fieldset>
-                      <input name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
+                      <input name="name" type="text" id="name" value="" placeholder="YOURNAME...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-6">
                     <fieldset>
-                    <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
+                    <input name="email" type="text" id="email" value="" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
                   </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea name="message" type="text" class="form-control" id="message" placeholder="YOUR MESSAGE..." required=""></textarea>
+                      <textarea name="message" type="text" class="form-control" id="message" placeholder="YOUR MESSAGE..." required="" value = ""></textarea>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
                     <fieldset>
                       <button type="submit" id="form-submit" class="button">SEND MESSAGE NOW</button>
                     </fieldset>
